@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.nio.ByteOrder;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -511,7 +512,7 @@ public class MaryUtils {
 	 *             IOException
 	 */
 	public static File createSelfDeletingTempFile(int lifetimeInSeconds) throws IOException {
-		final File f = File.createTempFile("mary", "temp");
+		final File f = Files.createTempFile("mary", "temp").toFile();
 		maintenanceTimer.schedule(new TimerTask() {
 			public void run() {
 				f.delete();

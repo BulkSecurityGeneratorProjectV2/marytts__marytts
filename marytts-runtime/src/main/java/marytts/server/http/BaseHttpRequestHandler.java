@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
+import java.nio.file.Files;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -168,7 +169,7 @@ public abstract class BaseHttpRequestHandler extends SimpleNHttpRequestHandler i
 		private long idx = 0;
 
 		public FileWriteListener(boolean useFileChannels) throws IOException {
-			this.file = File.createTempFile("tmp", ".tmp", null);
+			this.file = Files.createTempFile("tmp", ".tmp").toFile();
 			this.inputFile = new FileInputStream(file);
 			this.fileChannel = inputFile.getChannel();
 			this.useFileChannels = useFileChannels;
